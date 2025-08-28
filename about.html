@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - ModernShop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #1e40af;
+            --accent-color: #f59e0b;
+            --light-bg: #f8fafc;
+            --dark-text: #1e293b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .team-card {
+            transition: transform 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-2xl font-bold text-blue-600">ModernShop</a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="shop.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Shop</a>
+                        <a href="about.html" class="text-blue-600 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="contact.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Right side icons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="relative">
+                        <button class="p-2 text-gray-700 hover:text-blue-600">
+                            <i class="fas fa-search text-lg"></i>
+                        </button>
+                    </div>
+                    <div class="relative">
+                        <button class="p-2 text-gray-700 hover:text-blue-600" onclick="toggleCart()">
+                            <i class="fas fa-shopping-cart text-lg"></i>
+                            <span class="cart-badge">3</span>
+                        </button>
+                    </div>
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                        Sign In
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMenu()" class="text-gray-700 hover:text-blue-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="mobile-menu md:hidden bg-white shadow-lg absolute top-16 left-0 w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="shop.html" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Shop</a>
+                <a href="about.html" class="text-blue-600 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="contact.html" class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+                <div class="border-t pt-3">
+                    <button class="w-full text-left px-3 py-2 text-gray-700 hover:text-blue-600">
+                        <i class="fas fa-search mr-2"></i> Search
+                    </button>
+                    <button class="w-full text-left px-3 py-2 text-gray-700 hover:text-blue-600" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart mr-2"></i> Cart (3)
+                    </button>
+                    <button class="w-full text-left px-3 py-2 text-blue-600">
+                        <i class="fas fa-user mr-2"></i> Sign In
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="bg-gray-100 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="text-sm">
+                <ol class="list-none p-0 inline-flex">
+                    <li class="flex items-center">
+                        <a href="index.html" class="text-blue-600 hover:text-blue-800">Home</a>
+                        <span class="mx-2">/</span>
+                    </li>
+                    <li class="text-gray-500">About</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- About Header -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">About ModernShop</h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    We're dedicated to bringing you the finest products with exceptional customer service. 
+                    Our journey began with a simple mission: to make premium shopping accessible to everyone.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/12c86247-b0df-4cfa-af3d-1c46e5f90232.png" alt="Modern retail store interior with clean design and happy customers shopping" class="rounded-xl shadow-lg w-full" onerror="this.style.backgroundColor='#f3f4f6'">
+                </div>
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Our Story</h2>
+                    <p class="text-gray-600 mb-6">
+                        Founded in 2018, ModernShop started as a small boutique store with a big dream. 
+                        Today, we've grown into a trusted online destination serving thousands of customers 
+                        worldwide with our carefully curated selection of premium products.
+                    </p>
+                    <p class="text-gray-600 mb-8">
+                        Our team of expert curators spends countless hours researching and testing products 
+                        to ensure we only offer the best quality items that meet our strict standards.
+                    </p>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="text-center">
+                            <div class="stat-number">10K+</div>
+                            <p class="text-gray-600">Happy Customers</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="stat-number">500+</div>
+                            <p class="text-gray-600">Premium Products</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="stat-number">50+</div>
+                            <p class="text-gray-600">Brand Partners</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="stat-number">24/7</div>
+                            <p class="text-gray-600">Customer Support</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Values</h2>
+                <p class="text-xl text-gray-600">The principles that guide everything we do</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-star text-blue-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Quality First</h3>
+                    <p class="text-gray-600">
+                        We never compromise on quality. Every product in our collection undergoes 
+                        rigorous testing to ensure it meets our high standards.
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-users text-green-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Customer Focus</h3>
+                    <p class="text-gray-600">
+                        Your satisfaction is our priority. We're committed to providing exceptional 
+                        service and support at every step of your journey.
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-lightbulb text-yellow-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text
